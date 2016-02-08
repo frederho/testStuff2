@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>IFrame</title>  
+        <script src="js/jquery-1.12.0.min.js"></script>     
+        <script>
+
+            var step = 1;
+            window.onload = resize;
+            
+            function resize() {
+              var height = document.getElementsByTagName("html")[0].scrollHeight;
+              window.parent.postMessage(["setHeight", height], "*"); 
+            }
+
+            function goFullScreen () {
+                window.parent.postMessage(['goFullScreen', {}], "*");
+            }
+            
+            function hideFrame() {
+                window.parent.postMessage(['hideFrame', {}], "*")
+            }
+            function next() {
+                showAndIncrement();
+                resize();
+            }
+
+            function showAndIncrement() {
+                $('#section'+step).show();
+                step++;
+            }
+
+            function hideAndReduce() {
+                $('#section'+step).show();
+            }
+
+        </script>
+    </head>
+    <body style="border: solid;">
+        <h2>My IFrame</h2>
+        <a href="#" onclick="next()">Neste</a>
+        <div id="section1" style="display: none;">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac libero nibh. Aenean varius mi in accumsan ultricies. Nulla quis arcu eros. Phasellus placerat metus ac elit dignissim fermentum. Fusce iaculis semper commodo. Nullam vestibulum sem sed metus tincidunt posuere. Praesent eu est mi. Phasellus id lobortis nunc. Aenean auctor ante at auctor mollis. Suspendisse id cursus tortor. Sed at convallis lorem.</p>
+        </div>
+        <div id="section2" style="display: none;">
+            <p>Suspendisse potenti. Nulla eget elit vitae urna tristique iaculis in at risus. Vestibulum viverra dignissim mauris et lacinia. Nunc dignissim, elit vitae ornare feugiat, sapien nunc molestie orci, ut mattis velit massa at sem. Nam pharetra, purus eget cursus facilisis, risus dui aliquam sapien, vel tempor dolor dolor quis tortor. Quisque a tempus dui. Quisque efficitur orci ac turpis pretium, id scelerisque mauris pharetra. Ut rutrum, odio id hendrerit luctus, ipsum erat blandit libero, id efficitur lorem quam sed risus. Curabitur bibendum et mi a pretium. Nunc bibendum tempor orci, sit amet bibendum lectus posuere at.</p>
+        </div>
+        <div id="section3" style="display: none;">
+            <p>Pellentesque viverra non ipsum facilisis vehicula. In nec maximus enim, quis posuere urna. Donec eu quam finibus, porta nisi non, suscipit ligula. Sed augue justo, tristique tincidunt cursus sed, dapibus et sapien. Cras et mi elit. Nulla at ultrices metus, id egestas velit. Morbi lobortis tortor sit amet nisl dictum aliquet. Suspendisse finibus urna et elit vestibulum consectetur. Nam varius eu mauris ultricies euismod. Integer vel mauris nisl. Vivamus aliquet felis eget mollis hendrerit. Aenean risus orci, tincidunt vitae erat et, convallis iaculis nibh. Quisque quis placerat turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sodales, sapien ac pellentesque imperdiet, arcu ipsum congue arcu, vitae aliquam risus risus nec ex.</p>
+            <a href="#" onclick="goFullScreen()">Fullskjerm er tingen!</a>
+            <a href="#" onclick="hideFrame()">Skjul meg</a>
+        </div>
+        
+
+    </body>
+</html>
