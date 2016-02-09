@@ -1,55 +1,101 @@
 <html>
     <head>
-        <title>IFrame</title>  
-        <script src="js/jquery-1.12.0.min.js"></script>     
-        <script>
-
-            var step = 1;
-            window.onload = resize;
+        <title>IFrame</title> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/> 
+        
             
-            function resize() {
-              var height = document.getElementsByTagName("html")[0].scrollHeight;
-              window.parent.postMessage(["setHeight", height], "*"); 
-            }
-
-            function goFullScreen () {
-                window.parent.postMessage(['goFullScreen', {}], "*");
-            }
-            
-            function hideFrame() {
-                window.parent.postMessage(['hideFrame', {}], "*")
-            }
-            function next() {
-                showAndIncrement();
-                resize();
-            }
-
-            function showAndIncrement() {
-                $('#section'+step).show();
-                step++;
-            }
-
-            function hideAndReduce() {
-                $('#section'+step).show();
-            }
 
         </script>
     </head>
     <body style="border: solid;">
-        <h2>My IFrame</h2>
-        <a href="#" onclick="next()">Neste</a>
-        <div id="section1" style="display: none;">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac libero nibh. Aenean varius mi in accumsan ultricies. Nulla quis arcu eros. Phasellus placerat metus ac elit dignissim fermentum. Fusce iaculis semper commodo. Nullam vestibulum sem sed metus tincidunt posuere. Praesent eu est mi. Phasellus id lobortis nunc. Aenean auctor ante at auctor mollis. Suspendisse id cursus tortor. Sed at convallis lorem.</p>
-        </div>
-        <div id="section2" style="display: none;">
-            <p>Suspendisse potenti. Nulla eget elit vitae urna tristique iaculis in at risus. Vestibulum viverra dignissim mauris et lacinia. Nunc dignissim, elit vitae ornare feugiat, sapien nunc molestie orci, ut mattis velit massa at sem. Nam pharetra, purus eget cursus facilisis, risus dui aliquam sapien, vel tempor dolor dolor quis tortor. Quisque a tempus dui. Quisque efficitur orci ac turpis pretium, id scelerisque mauris pharetra. Ut rutrum, odio id hendrerit luctus, ipsum erat blandit libero, id efficitur lorem quam sed risus. Curabitur bibendum et mi a pretium. Nunc bibendum tempor orci, sit amet bibendum lectus posuere at.</p>
-        </div>
-        <div id="section3" style="display: none;">
-            <p>Pellentesque viverra non ipsum facilisis vehicula. In nec maximus enim, quis posuere urna. Donec eu quam finibus, porta nisi non, suscipit ligula. Sed augue justo, tristique tincidunt cursus sed, dapibus et sapien. Cras et mi elit. Nulla at ultrices metus, id egestas velit. Morbi lobortis tortor sit amet nisl dictum aliquet. Suspendisse finibus urna et elit vestibulum consectetur. Nam varius eu mauris ultricies euismod. Integer vel mauris nisl. Vivamus aliquet felis eget mollis hendrerit. Aenean risus orci, tincidunt vitae erat et, convallis iaculis nibh. Quisque quis placerat turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sodales, sapien ac pellentesque imperdiet, arcu ipsum congue arcu, vitae aliquam risus risus nec ex.</p>
-            <a href="#" onclick="goFullScreen()">Fullskjerm er tingen!</a>
-            <a href="#" onclick="hideFrame()">Skjul meg</a>
-        </div>
-        
+        <form role="form">
+          <div class="form-group">
+            <label for="cards">Registered cards</label>
+            <div id="cards" class="radio">
+              <label><input type="radio" name="optradio">Visa 4925 **** **** **13</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="optradio">Visa 4925 **** **** **14</label>
+            </div>
+          </div>
+          
+        </form>
+        <button class="btn btn-default" onclick="displayCardForm()">Add card</button>
 
+        <div id="creditCardForm" class="container" style="display: none;">
+          <form role="form">
+            <fieldset>
+              <legend>Payment</legend>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-number">Card Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                        <option>Month</option>
+                        <option value="01">Jan (01)</option>
+                        <option value="02">Feb (02)</option>
+                        <option value="03">Mar (03)</option>
+                        <option value="04">Apr (04)</option>
+                        <option value="05">May (05)</option>
+                        <option value="06">June (06)</option>
+                        <option value="07">July (07)</option>
+                        <option value="08">Aug (08)</option>
+                        <option value="09">Sep (09)</option>
+                        <option value="10">Oct (10)</option>
+                        <option value="11">Nov (11)</option>
+                        <option value="12">Dec (12)</option>
+                      </select>
+                    </div>
+                    <div class="col-xs-3">
+                      <select class="form-control" name="expiry-year">
+                        <option value="13">2013</option>
+                        <option value="14">2014</option>
+                        <option value="15">2015</option>
+                        <option value="16">2016</option>
+                        <option value="17">2017</option>
+                        <option value="18">2018</option>
+                        <option value="19">2019</option>
+                        <option value="20">2020</option>
+                        <option value="21">2021</option>
+                        <option value="22">2022</option>
+                        <option value="23">2023</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                  <button type="button" class="btn btn-success" onclick="goFullScreen()">Pay Now</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <script src="js/jquery-1.12.0.min.js"></script>     
+        <script src="js/custom.js"></script>
     </body>
 </html>
