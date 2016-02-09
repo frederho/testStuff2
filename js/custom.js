@@ -2,11 +2,11 @@ var step = 1;
 window.onload = resize;
 
 function resize() {
-  var height = document.getElementsByTagName("html")[0].scrollHeight;
-  window.parent.postMessage(["setHeight", height], "*"); 
+    var height = document.getElementsByTagName("html")[0].scrollHeight;
+    window.parent.postMessage(["setHeight", height], "*");
 }
 
-function goFullScreen () {
+function goFullScreen() {
     window.parent.postMessage(['goFullScreen', {}], "*");
     location.href = "http://localhost:3003/test2.html"
 }
@@ -19,16 +19,12 @@ function next() {
     resize();
 }
 
-function displayCardForm () {
+function displayCardForm() {
     $('#creditCardForm').show();
     resize();
 }
 
-function showAndIncrement() {
-    $('#section'+step).show();
-    step++;
-}
 
 function hideAndReduce() {
-    $('#section'+step).show();
+    $('#section' + step).show();
 }
