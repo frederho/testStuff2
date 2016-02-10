@@ -10,6 +10,7 @@ function createIframe() {
     _iframeHtml.width = '100%';
     _iframeHtml.frameBorder = '0';
     _iframeHtml.style['display'] = 'block';
+    _iframeHtml.sandbox = "allow-scripts allow-forms";//block access to navigation from iframe scripts
     return _iframeHtml;
 }
 
@@ -40,8 +41,8 @@ function replaceIframeElement(iframe) {
     var replacement = iframe.parentNode.replaceChild(replacement, iframe);
 }
 
-
 function reactToEvent(e) {
+
     var iframe = document.getElementById('myIframe');
     var eventName = e.data[0];
 

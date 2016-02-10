@@ -8,7 +8,7 @@ function resize() {
 
 function goFullScreen() {
     window.parent.postMessage(['goFullScreen', {}], "*");
-    location.href = "http://localhost:3003/test2.html"
+    location.href = "http://localhost:3003/test2.html";
 }
 
 function hideFrame() {
@@ -23,7 +23,6 @@ function displayCardForm() {
     $('#creditCardForm').show();
     resize();
 }
-
 
 function hideAndReduce() {
     $('#section' + step).show();
